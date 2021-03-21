@@ -193,4 +193,27 @@ class AndroidHeadView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : AndroidHeadView) {
+
+        private val animator : Animator = Animator(view)
+        private val ah : AndroidHead = AndroidHead(0)
+        private val PAINT : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ah.draw(canvas, PAINT)
+            animator.animate {
+                ah.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ah.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
