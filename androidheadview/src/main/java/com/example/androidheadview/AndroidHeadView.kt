@@ -216,4 +216,14 @@ class AndroidHeadView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : AndroidHeadView {
+            val view : AndroidHeadView = AndroidHeadView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
+
 }
