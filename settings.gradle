@@ -1,0 +1,3 @@
+include ':androidheadview'
+include ':app'
+rootProject.name = "LinkedAndroidHeadView"
