@@ -21,7 +21,7 @@ val colors : Array<Int> = arrayOf(
 val parts : Int = 4
 val strokeFactor : Float = 90f
 val arcFactor : Float = 7.9f
-val eyeFactor : Float = 25.6f
+val eyeFactor : Float = 35.6f
 val lineFactor : Float = 4.5f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
@@ -44,15 +44,17 @@ fun Canvas.drawAndroidHead(scale : Float, i : Int,  w : Float, h : Float, paint 
     save()
     translate(w / 2, h / 2)
     paint.color = colors[i]
-    drawArc(RectF(size, -size, size, size), 180f, 180f * sf1, true, paint)
+    drawArc(RectF(-size, -size, size, size), 180f, 180f * sf1, true, paint)
     for (j in 0..1) {
         save()
         scale(1f - 2 * j, 1f)
+        save()
         rotate(45f * sf4)
         paint.color = colors[i]
-        drawLine(0f, 0f, size * sf2, -size * sf2, paint)
+        drawLine(0f, 0f, 0f, -lineSize * sf2, paint)
+        restore()
         paint.color = backColor
-        drawCircle(size / 2, -size / 2, eyeSize * sf4, paint)
+        drawCircle(size / 2, -size / 2, eyeSize * sf3, paint)
         restore()
     }
     restore()
